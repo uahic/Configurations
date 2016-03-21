@@ -1,24 +1,24 @@
 " Install vundle if it's missing!
-"let iCanHazVundle=1
-"let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-"if !filereadable(vundle_readme)
-"    echo "Installing Vundle.."
-"    echo ""
-"    silent !mkdir -p ~/.vim/bundle
-"    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-"    let iCanHazVundle=0
-"endif
-"
-"set rtp+=~/.vim/bundle/vundle/
-"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle.."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+endif
+
+set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 "call vundle#rc()
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set rtp+=~/.vim/bundle/vundle/ " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#begin()
-
-
+"
+"
 " Vundle configuration
 
 " Plugins
@@ -43,7 +43,11 @@ Bundle 'julialang/julia-vim'
 Bundle 'sickill/vim-monokai.git'
 Bundle 'SirVer/ultisnips'
 
+Bundle 'Raimondi/delimitMate.git'
+Bundle 'ervandew/supertab'
 
+" Some Snippets for Ultisnips
+Plugin 'honza/vim-snippets'
 " Vim environment options
 syntax on 
 set nowrap
@@ -75,7 +79,6 @@ no <left> <Nop>
 no <right> <Nop>
 no <up> <Nop>
 vmap <C-C> "+y
-map <F2> :NERDTreeToggle<CR>
 "
 " " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
@@ -112,23 +115,66 @@ else
     " set background=light
 endif
 
+" Fix not escaping visual mode on shifting
+vnoremap < <gv
+vnoremap > >gv 
+
+""" Code folding options
+nmap <leader>g0 :set foldlevel=0<CR>
+nmap <leader>g1 :set foldlevel=1<CR>
+nmap <leader>g2 :set foldlevel=2<CR>
+nmap <leader>g3 :set foldlevel=3<CR>
+nmap <leader>g4 :set foldlevel=4<CR>
+nmap <leader>g5 :set foldlevel=5<CR>
+nmap <leader>g6 :set foldlevel=6<CR>
+nmap <leader>g7 :set foldlevel=7<CR>
+nmap <leader>g8 :set foldlevel=8<CR>
+nmap <leader>g9 :set foldlevel=9<CR>
+set foldmethod=syntax
+set foldlevel=2
+
+" No swap file
+set noswapfile
+
 set laststatus=2
 let g:Powerline_symbols='fancy'
 
 " Syntastic
-let g:syntastic_cpp_compiler = 'clang++-3.5'
+let g:syntastic_cpp_compiler = 'clang'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
 
 " YouCompleteMe options
 "let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" Global ycm config file path
+let g:ycm_global_ycm_extra_conf = ''
+" Turn off disturbing confirmation if ycm config file has been found
+let g:ycm_confirm_extra_conf = 0
 
 " NerdTree options
-map <C-t> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
+
+" Tagbar
+map <F3> :TagbarToggle<CR>
+
+" Command-t
+noremap <leader>o :CommandT<CR>
+noremap <leader>O :CommandTFlush<CR>
+noremap <leader>m :CommandTBuffer<CR>
 
 " EASYMOTION
 let g:EasyMotion_leader_key = '<leader>'
 
-" Rainbow Parenthesis colors
-nnoremap <F3> :RainbowParenthesesToggleAll<cr>
+" YouCompleteMe Keybindings
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" Ultisnips
+let g:UltiSnipsSnippetsDir = '~/.vim/custom_snips/'
+let g:UltiSnipsExpandTrigger="<c-CR>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
