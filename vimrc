@@ -166,3 +166,4 @@ let g:UltiSnipsSnippetsDir = '~/.vim/custom_snips/'
 let g:UltiSnipsExpandTrigger="<c-CR>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit="vertical"
