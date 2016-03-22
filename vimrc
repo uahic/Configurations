@@ -121,6 +121,10 @@ nmap <leader>g9 :set foldlevel=9<CR>
 set foldmethod=syntax
 set foldlevel=2
 
+" Resizing 
+nnoremap <silent> + :vertical resize +5<CR>
+nnoremap <silent> - :vertical resize -5<CR>
+
 " No swap file
 set noswapfile
 
