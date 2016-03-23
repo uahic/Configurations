@@ -10,10 +10,10 @@
 
 ### Notices (VIMRC)
 0. Leader key is set to '\' (I am using US-American keyboard layout)
-1. You can collapse and expand folds with <z-o> and <z-c> respectively
-2. Ultisnips works fine with Youcompleteme plugin, expansion can be done with <C-Return>
+1. You can collapse and expand folds with z-o and z-c respectively
+2. Ultisnips works fine with Youcompleteme plugin, expansion can be done with C-Return
 3. Pressing "\ b" opens command-t plugin for file browsing (if vim is compiled with ruby)
-4. Pressing <F3> opens Tagbar (only when ctags-exuberant is installed)
-5. Pressing <F2> opens Directory tree
+4. Pressing F3 opens Tagbar (only when ctags-exuberant is installed)
+5. Pressing F2 opens Directory tree
 6. Pressing "\ w" offers a nice way to jump with the cursor to any place in the script
 7. + and - key lets you change the width of a window
