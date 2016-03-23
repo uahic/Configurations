@@ -36,6 +36,9 @@ Bundle 'ervandew/supertab'
 
 " Some Snippets for Ultisnips
 Plugin 'honza/vim-snippets'
+
+Bundle 'rhysd/vim-clang-format.git'
+
 " Vim environment options
 syntax on 
 set nowrap
@@ -171,3 +174,8 @@ let g:UltiSnipsExpandTrigger="<c-CR>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
+
+" Clang format style
+let g:clang_format#auto_format = 1
+let g:clang_format#auto_formatexpr = 0
+let g:clang_format#command = 'clang-format-3.6'
