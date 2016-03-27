@@ -191,3 +191,10 @@ inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>
 let g:clang_format#auto_format = 1
 let g:clang_format#auto_formatexpr = 0
 let g:clang_format#command = 'clang-format-3.6'
+
+" Syntastic
+let g:syntastic_check_on_open = 1 
+let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+
