@@ -170,10 +170,22 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Ultisnips
 let g:UltiSnipsSnippetsDir = '~/.vim/custom_snips/'
-let g:UltiSnipsExpandTrigger="<c-CR>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
+
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+let g:endwise_no_mappings = 1
+inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>\<C-R>=EndwiseDiscretionary()\<CR>"
 
 " Clang format style
 let g:clang_format#auto_format = 1
