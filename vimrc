@@ -11,8 +11,11 @@ call vundle#begin()
 
 " Plugins
 Bundle 'gmarik/vundle' 
+
+" Autocompletion etc.
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'a.vim'
+" For switching quickly between header and source files
+Bundle 'a.vim' 
 Bundle 'wincent/Command-T'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'scrooloose/nerdtree'
@@ -22,22 +25,38 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+
+" Quick motion
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+" STL syntax highlighting
 Bundle 'Mizuchi/STL-Syntax'
+
+" File crawler
 Bundle 'tomtom/tcomment_vim'
+
+" Tagbar
 Bundle 'majutsushi/tagbar'
 Bundle 'julialang/julia-vim'
+
+" Colorscheme
 Bundle 'sickill/vim-monokai.git'
+
+Bundle 'ervandew/supertab'
+" Snippets
 Bundle 'SirVer/ultisnips'
 
+" Auto bracket stuff
 Bundle 'Raimondi/delimitMate.git'
-Bundle 'ervandew/supertab'
 
 " Some Snippets for Ultisnips
 Plugin 'honza/vim-snippets'
 
+" Format Checkers
 Bundle 'rhysd/vim-clang-format.git'
+Bundle 'scrooloose/syntastic.git'
+
 
 " Vim environment options
 syntax on 
