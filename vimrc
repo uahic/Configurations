@@ -212,6 +212,8 @@ let g:clang_format#auto_formatexpr = 0
 let g:clang_format#command = 'clang-format-3.6'
 
 " Syntastic
+"let g:syntastic_verapp_config_file = '/usr/lib/vera++/profiles/nest'
+"let g:syntastic_cpp_checkers = ['vera++', 'cppcheck']
 let g:syntastic_check_on_open = 1 
 let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = "✗"
