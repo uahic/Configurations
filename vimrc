@@ -141,7 +141,7 @@ nmap <leader>g7 :set foldlevel=7<CR>
 nmap <leader>g8 :set foldlevel=8<CR>
 nmap <leader>g9 :set foldlevel=9<CR>
 set foldmethod=syntax
-set foldlevel=2
+set foldlevel=8
 
 " Resizing 
 nnoremap <silent> + :vertical resize +5<CR>
