@@ -19,6 +19,7 @@ Bundle 'a.vim'
 Bundle 'wincent/Command-T'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'godlygeek/tabular'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-unimpaired'
@@ -169,7 +170,7 @@ let g:ycm_global_ycm_extra_conf = ''
 let g:ycm_confirm_extra_conf = 0
 
 " NerdTree options
-map <F2> :NERDTreeToggle<CR>
+map <F2> :NERDTreeTabsToggle<CR>
 
 " Tagbar
 map <F3> :TagbarToggle<CR>
