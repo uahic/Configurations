@@ -151,6 +151,9 @@ nnoremap <silent> - :vertical resize -5<CR>
 " No swap file
 set noswapfile
 
+" Paste toggle
+set pastetoggle=<F4>
+
 set laststatus=2
 let g:Powerline_symbols='fancy'
 
