@@ -222,3 +222,12 @@ let g:syntastic_warning_symbol = "⚠"
 " The Python checkers can consume alot of computational power, 
 " so in order to avoid re-checking when saving the user should trigger syntax check manually
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+
+function! s:insert_gates()
+  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+  execute "normal! i#ifndef " . gatename
+  execute "normal! o#define " . gatename . " "
+  execute "normal! Go#endif /* " . gatename . " */"
+  normal! kk
+endfunction
+autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
