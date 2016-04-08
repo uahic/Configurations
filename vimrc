@@ -58,6 +58,9 @@ Plugin 'honza/vim-snippets'
 Bundle 'rhysd/vim-clang-format.git'
 Bundle 'scrooloose/syntastic.git'
 
+" TODO Manager etc.
+Bundle 'dhruvasagar/vim-dotoo'
+
 
 " Vim environment options
 syntax on 
