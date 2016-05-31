@@ -1,66 +1,54 @@
 
-"call vundle#rc()
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set rtp+=~/.vim/bundle/vundle/ " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 call vundle#begin()
 "
-"
 " Vundle configuration
-
 " Plugins
 Bundle 'gmarik/vundle' 
-
-" Autocompletion etc.
 Bundle 'Valloric/YouCompleteMe'
-" For switching quickly between header and source files
-Bundle 'a.vim' 
+Bundle 'a.vim'
 Bundle 'wincent/Command-T'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'tpope/vim-markdown.git'
+Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'godlygeek/tabular'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-
-" Quick motion
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" STL syntax highlighting
 Bundle 'Mizuchi/STL-Syntax'
-
-" File crawler
 Bundle 'tomtom/tcomment_vim'
-
-" Tagbar
 Bundle 'majutsushi/tagbar'
 Bundle 'julialang/julia-vim'
-
-" Colorscheme
 Bundle 'sickill/vim-monokai.git'
-
-Bundle 'ervandew/supertab'
-" Snippets
 Bundle 'SirVer/ultisnips'
 
-" Auto bracket stuff
 Bundle 'Raimondi/delimitMate.git'
+Bundle 'ervandew/supertab'
+Bundle 'jistr/vim-nerdtree-tabs'
 
 " Some Snippets for Ultisnips
 Plugin 'honza/vim-snippets'
 
-" Format Checkers
 Bundle 'rhysd/vim-clang-format.git'
 Bundle 'scrooloose/syntastic.git'
 
-" TODO Manager etc.
-Bundle 'dhruvasagar/vim-dotoo'
+Bundle 'dhruvasagar/vim-dotoo.git'
 
+Bundle 'altercation/vim-colors-solarized.git'
+
+Bundle 'samsonw/vim-task.git'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
+"Bundle 'farseer90718/vim-taskwarrior'
+"Bundle 'irrationalistic/vim-tasks'
 
 " Vim environment options
 syntax on 
@@ -96,6 +84,7 @@ vmap <C-C> "+y
 "
 " " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+
 "Invisible character colors 
 " highlight NonText ctermfg=1
 "highlight Normal ctermbg=NONE
@@ -105,11 +94,12 @@ highlight nonText ctermbg=NONE
 highlight SpecialKey ctermfg=1
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call vundle#end()
+filetype plugin indent on
 
+let g:airline#extensions#tabline#enabled = 1
 " Colorscheme
-colorscheme monokai 
+"colorscheme monokai 
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 13
 
 if has("gui_running")
@@ -122,11 +112,11 @@ if has("gui_running")
     let g:solarized_termcolors=256
 else
     """ FOR Native Vim "
-    set term=screen-256color
-    set t_Co=256
-    " colorscheme solarized
-    " let g:solarized_termcolors=256
-    " set background=light
+    "set term=screen-256color
+    "set t_Co=256
+     colorscheme solarized
+     let g:solarized_termcolors=256
+     set background=light
 endif
 
 " Fix not escaping visual mode on shifting
@@ -145,23 +135,21 @@ nmap <leader>g7 :set foldlevel=7<CR>
 nmap <leader>g8 :set foldlevel=8<CR>
 nmap <leader>g9 :set foldlevel=9<CR>
 set foldmethod=syntax
-set foldlevel=8
-
-" Resizing 
-nnoremap <silent> + :vertical resize +5<CR>
-nnoremap <silent> - :vertical resize -5<CR>
+set foldlevel=10
 
 " No swap file
 set noswapfile
 
-" Paste toggle
-set pastetoggle=<F4>
+" Resizing
+nnoremap <silent> + :vertical resize +5<CR>
+nnoremap <silent> - :vertical resize -5<CR>
+
 
 set laststatus=2
 let g:Powerline_symbols='fancy'
 
 " Syntastic
-let g:syntastic_cpp_compiler = 'clang'
+let g:syntastic_cpp_compiler = 'clang-3.9'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
 
 " YouCompleteMe options
@@ -171,15 +159,21 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 "let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 " Global ycm config file path
-let g:ycm_global_ycm_extra_conf = ''
+let g:ycm_global_ycm_extra_conf = '/fzi/ids/schulze/.ycm_config.py'
 " Turn off disturbing confirmation if ycm config file has been found
 let g:ycm_confirm_extra_conf = 0
 
+
+" Paste
+set pastetoggle=<F4>
+
 " NerdTree options
 map <F2> :NERDTreeTabsToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Tagbar
 map <F3> :TagbarToggle<CR>
+let g:tagbar_ctags_bin = "/disk/no_backup/schulze/builds_32/ctags-5.8/bin/ctags"
 
 " Command-t
 noremap <leader>o :CommandT<CR>
@@ -213,21 +207,27 @@ endfunction
 let g:endwise_no_mappings = 1
 inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>\<C-R>=EndwiseDiscretionary()\<CR>"
 
+
 " Clang format style
-let g:clang_format#auto_format = 1
+let g:clang_format#auto_format = 0
 let g:clang_format#auto_formatexpr = 0
-let g:clang_format#command = 'clang-format-3.6'
+let g:clang_format#command = 'clang-format'
 
 " Syntastic
-"let g:syntastic_verapp_config_file = '/usr/lib/vera++/profiles/nest'
-"let g:syntastic_cpp_checkers = ['vera++', 'cppcheck']
-let g:syntastic_check_on_open = 1 
+let g:syntastic_mode="passive"
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
-" The Python checkers can consume alot of computational power, 
-" so in order to avoid re-checking when saving the user should trigger syntax check manually
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+
+" Task
+inoremap :call Toggle_task_status()i
+noremap :call Toggle_task_status()
+
+" Airline
+let g:airline_powerline_fonts = 1 
+let g:airline_theme='papercolor'
 
 function! s:insert_gates()
   let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
