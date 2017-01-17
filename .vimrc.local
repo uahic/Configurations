@@ -1,0 +1,66 @@
+set textwidth=80
+au BufRead,BufNewFile *.py setlocal textwidth=80
+
+" Local leader
+let maplocalleader = "\\"
+
+" Easymotion
+" <Leader>f{char} to move to {char}
+map  <Leader>t <Plug>(easymotion-bd-f)
+nmap <Leader>t <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+" Latex
+nmap <F12> :LLPStartPreview<cr>
+
+" Ultisnips
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+let g:livepreview_previewer = 'mupdf'
+let g:vimtex_view_general_viewer = 'mupdf'
+let g:vimtex_view_method = 'mupdf'
+
+
+let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_Flavor='latex'
+let g:Tex_ViewRule_pdf='mupdf'
+
+let g:livepreview_previewer = 'mupdf'
+
+" Remove trailing whitespaces
+"
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+autocmd BufWritePre *.* :call <SID>StripTrailingWhitespaces()
+
+" Execute python
+autocmd FileType python nnoremap <buffer> = :exec '!python' shellescape(@%, 1)<cr>

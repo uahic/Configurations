@@ -1,0 +1,10 @@
+Plug 'ervandew/supertab.git'
+Plug 'Valloric/YouCompleteMe'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'easymotion/vim-easymotion'
+Plug 'metakirby5/codi.vim'
+Plug 'lervag/vimtex'
+" Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'xuhdev/vim-latex-live-preview'
+" Plug 'vim-scripts/auctex.vim'
+
